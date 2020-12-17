@@ -1,8 +1,20 @@
-import Vue from 'vue'
-import App from './App.vue'
+window.Vue = require('vue');
 
-Vue.config.productionTip = false
+import Vue from 'vue'
+// import Vuex from 'vuex'
+import App from './App.vue'
+import vuetify from './plugins/vuetify';
+import router from './router';
+import store from './store'
+import VuePageTransition from 'vue-page-transition'
+
+// Vue.use(ReadMore);
+Vue.use(VuePageTransition);
 
 new Vue({
-  render: h => h(App),
-}).$mount('#app')
+    el: '#app',
+    router,
+    store,
+    vuetify,
+    render: h => h(App)
+}).$mount('#app');
