@@ -63,10 +63,41 @@ const CarModule = {
     },
 }
 
+const ProfileModule = {
+    state: () => ({
+        Profile: {},
+    }),
+    mutations: {
+        setProfile(state, data) {
+            console.log("setting profile");
+            state.Profile = data;
+            console.log(state.Profile.title);
+        },
+    },
+    actions: {
+        fetchProfile({ commit }, id) {
+            console.log(id);
+            axios.get("https://next.json-generator.com/api/json/get/4ki4LA73F")
+                .then(
+                    response => {
+                        console.log(response.data["Profile"][0]);
+                        commit("setProfile", response.data["Profile"][0]);
+                    }
+                );
+        }
+    },
+    getters: {
+        Profile(state) {
+            return state.Profile;
+        },
+    },
+}
+
 Vue.use(Vuex);
 
 export default new Vuex.Store({
     modules: {
         main: CarModule,
+        ProfileModule,
     }
 });

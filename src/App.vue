@@ -1,20 +1,32 @@
 <template>
-  <div id="app">
-      <!-- <transition name="slide-fade" mode="out-in"> -->
-        <router-view class="child-view"></router-view>
-      <!-- </transition> -->
-  </div>
+  <v-app id="app">
+    <!-- <transition name="slide-fade" mode="out-in"> -->
+      
+    <nav_bar />
+    
+    <v-main class="grey lighten-3 stable">
+      <router-view class="child-view"></router-view>
+    </v-main>
+
+    <!-- </transition> -->
+  </v-app>
 </template>
 
 <script>
 
+  import nav_bar from './components/nav_bar';
 
+  export default {
+    name: 'App',
 
-export default {
-  name: 'App',
-  data () {
-    // return { transitionName: null }
-  },
-}
+    components: {
+      nav_bar,
+    }
+  }
 </script>
 
+<style scoped>
+  .stable {
+    padding: 56px 0px 0px !important;
+  }
+</style>
