@@ -33,7 +33,7 @@
     </v-row>
 
     <v-row class="text-center">
-      <v-col cols="6">
+      <v-col cols="4">
         <v-card class="pa-md-4 mx-lg-auto" height="150">
           <h1> Car's Price </h1>
           <p> Predicted by our Machine Learning algorithms </p>
@@ -41,7 +41,7 @@
           <h3 class="blue--text"> {{car.price}} </h3>
         </v-card>
       </v-col>
-      <v-col cols="6">
+      <v-col cols="8">
         <v-card class="pa-md-4 mx-lg-auto" height="150">
           <h1> Description </h1>
           <p> {{car.description}} </p>
@@ -105,7 +105,7 @@
     },
     methods: {
 
-      ...mapActions(['addToWishlist', 'deleteFromWishlist']),
+      ...mapActions([]),
 
       goBack: function () {
         this.$router.go(-1);
@@ -113,12 +113,10 @@
 
       ToWishlist(id) {
         console.log("will be added to ws: " + id);
-        this.addToWishlist(id);
       },
 
       DeleteFromWishlist(id) {
         console.log("will be deleted to ws: " + id);
-        this.deleteFromWishlist(id);
       }
 
     }
