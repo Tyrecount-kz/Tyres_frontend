@@ -1,5 +1,9 @@
 <template>
-    <v-card class="mx-auto" max-width="400">
+    <v-card 
+        v-if="typeof car != 'undefined'" 
+        class="mx-auto" 
+        max-width="400"
+    >
         <v-img class="white--text align-end" height="200px" :src="car.img">
             <v-card-title>{{car.title}}</v-card-title>
         </v-img>
@@ -22,7 +26,34 @@
             </v-btn>
         </v-card-actions>
     </v-card>
+
+    <v-card 
+        v-else
+        class="mx-auto" 
+        max-width="400"
+        loading
+    >
+    <!-- <v-img class="white--text align-end" height="200px" :src="img_link_placeholder">
+            <v-card-title>No data</v-card-title>
+        </v-img> -->
+
+        <v-card-subtitle class="pb-0">
+            No Data
+        </v-card-subtitle>
+
+        <v-card-text class="text--primary">
+            <div>No data</div>
+        </v-card-text>
+
+        <v-card-actions>
+            <v-btn color="red" text>
+                No data
+            </v-btn>
+        </v-card-actions>
+    </v-card>
+
 </template>
+
 <script>
     import {
         mapActions,

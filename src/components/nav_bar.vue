@@ -24,7 +24,7 @@
         'Profile' : 'profile',
         'Market' : 'market',
         'Add car' : 'add_new_car',
-        'Wishlist' : 'profile',
+        'Wishlist' : 'profile/wishlist',
       },
     }),
 

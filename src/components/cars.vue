@@ -13,9 +13,10 @@
         <v-row>
             <v-col cols="4" v-for="car in cars" :key="car.id">
 
-                <card 
-                    :car="car" 
-                />
+                <card
+                    v-if="car.id%2==0"
+                 />
+                <card v-else :car="car" />
             </v-col>
         </v-row>
     </v-container>

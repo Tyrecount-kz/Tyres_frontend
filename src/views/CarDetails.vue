@@ -6,6 +6,7 @@
 </template>
 
 <script>
+
     import car_details from '../components/car_details.vue';
 
     export default {
@@ -15,7 +16,7 @@
         }),
 
         components: {
-            car_details
+            car_details,
         }
 
     }
