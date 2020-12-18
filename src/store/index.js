@@ -51,7 +51,7 @@ const CarModule = {
                         commit("setCar", response.data["car detail"][0]);
                     }
                 );
-        }
+        },
     },
     getters: {
         cars(state) {
