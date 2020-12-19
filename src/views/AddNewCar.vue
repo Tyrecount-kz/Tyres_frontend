@@ -1,15 +1,13 @@
 <template>
     <v-container>
 
-        <nav_bar />
-        <cars />
+        <add_new_car />
 
     </v-container>
 </template>
 
 <script>
-    import nav_bar from '../components/nav_bar';
-    import cars from '../components/cars';
+    import add_new_car from '../components/add_new_car';
 
     export default {
 
@@ -18,8 +16,7 @@
         }),
 
         components: {
-            nav_bar,
-            cars
+            add_new_car
         }
 
     }

@@ -1,5 +1,5 @@
 // import NotFound from '../components/NotFound';
-import add_new_car from '../views/add_new_car';
+import AddNewCar from '../views/AddNewCar';
 import CarDetails from '../views/CarDetails';
 import profile from '../views/profile';
 import Market from '../views/Market';
@@ -34,7 +34,7 @@ export default [{
     },
     {
         path: '/add_new_car',
-        component: add_new_car,
+        component: AddNewCar,
     },
     {
         path: '/car_detail',

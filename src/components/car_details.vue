@@ -34,7 +34,7 @@
 
     <v-row class="text-center">
       <v-col cols="4">
-        <v-card class="pa-md-4 mx-lg-auto" height="150">
+        <v-card class="pa-md-4 mx-lg-auto" min-height="175">
           <h1> Car's Price </h1>
           <p> Predicted by our Machine Learning algorithms </p>
 
@@ -42,7 +42,7 @@
         </v-card>
       </v-col>
       <v-col cols="8">
-        <v-card class="pa-md-4 mx-lg-auto" height="150">
+        <v-card class="pa-md-4 mx-lg-auto" min-height="175">
           <h1> Description </h1>
           <p> {{car.description}} </p>
         </v-card>
