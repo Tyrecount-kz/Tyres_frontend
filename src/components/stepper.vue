@@ -27,17 +27,12 @@
 
           <v-row>
             <v-col cols="12">
-              <v-text-field v-model="description" :counter="60" label="Description" required
-                @input="$v.description.$touch()" @blur="$v.description.$touch()"></v-text-field>
+              <v-text-field v-model="description" :counter="70" label="Description"></v-text-field>
             </v-col>
           </v-row>
         </v-container>
-        
-        <v-btn 
-          color="primary" 
-          :disabled="step1()"
-          @click="nextStep()"
-        >
+
+        <v-btn color="primary" :disabled="step1()" @click="nextStep()">
           Continue
         </v-btn>
       </v-card>
@@ -55,8 +50,7 @@
         <v-container>
           <v-row>
             <v-col cols="4">
-              <v-text-field v-model="mileage" :min="0" label="Mileage" hide-details single-line type="number"
-                suffix="km">
+              <v-text-field v-model="mileage" :min="0" label="Mileage" single-line type="number" suffix="km">
               </v-text-field>
             </v-col>
             <v-col cols="4">
@@ -103,11 +97,7 @@
           </v-row>
         </v-container>
 
-        <v-btn 
-          color="primary" 
-          :disabled="step2()"
-          @click="nextStep()"
-        >
+        <v-btn color="primary" :disabled="step2()" @click="nextStep(), submit()">
           Predict Price
         </v-btn>
 
@@ -120,13 +110,35 @@
     </v-stepper-step>
 
     <v-stepper-content step="3">
-      <v-card color="grey lighten-3" class="mb-12" height="200px">
-          
-        <v-text-field v-model="price" :min="0" label="Price" :value="price" :rules="[rules.required]" class="mb-1"
-          single-line type="number" readonly suffix="TENGE"></v-text-field>
-
+      <v-card v-if="price" class="mb-12 mh-1 grey lighten-4" height="200px">
+        <v-container>
+          <v-row>
+            <v-col cols="12">
+              <h1>Predicted Price</h1>
+              <small> our algorithms has high accuracy, check the <a href="#">documentation</a> </small>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col cols="3">
+              <v-text-field v-model="price" label="Price" :value="price" solo class="blue--text" readonly
+                suffix="TENGE">
+              </v-text-field>
+            </v-col>
+          </v-row>
+        </v-container>
       </v-card>
-      <v-btn color="primary" @click="nextStep">
+      <v-card v-else class="mb-12 mh-1 grey lighten-4" height="200px">
+        <v-container>
+          <v-row>
+            <v-col cols="12" class="d-flex flex-column align-center justify-center">
+              <h3>Predicting</h3>
+              <v-progress-circular class="mt-10" indeterminate color="primary"></v-progress-circular>
+            </v-col>
+          </v-row>
+        </v-container>
+      </v-card>
+
+      <v-btn color="primary" @click="nextStep()">
         Continue
       </v-btn>
       <v-btn text>
@@ -152,7 +164,6 @@
 
 
 <script>
-
   export default {
 
     data: () => ({
@@ -184,7 +195,7 @@
         'ВИС', 'Alfa Romeo', 'BAW', 'Isuzu', 'ЛуАЗ', 'Acura', 'BYD',
         'Москвич', 'Pontiac', 'Scion', 'Haima', 'Brilliance', 'DongFeng',
         'Saab', 'Wuling', 'Saturn', 'Buick', 'Daihatsu'
-      ],
+      ].sort(),
 
       model: null,
       models: ['Niva', 'Cadenza', 'LT', 'Camry', 'Pajero', ' 1995', 'Highlander',
@@ -322,7 +333,7 @@
         'Town Ace', 'NX 300h', 'Coupe', 'Venue', 'Rich', 'EcoSport',
         'LADA Granta', 'V8', '405', '21106 (седан)', 'Jazz', '120',
         'Element', 'Celsior', 'Kluger', 'RC 300', 'Space Star'
-      ],
+      ].sort(),
 
       city: null,
       cities: ['Уральск', 'Нур-Султан (Астана)', 'Тараз', 'Алматы', 'Караганда',
@@ -364,7 +375,7 @@
         'Миялы', 'Панфилово (Талгарский р-н)', 'Астраханка', 'Орск',
         'Курган', 'Екатеринбург', 'Рубцовск', 'Тайынша', 'Мойынкум',
         'Иргиз', 'Георгиевка', 'Теренозек', 'Сергеевка', 'Сайхин'
-      ],
+      ].sort(),
 
       description: '',
 
@@ -397,7 +408,8 @@
       shell: null,
       type_engine: null,
 
-      price: 450000,
+      // price: 450000,
+      price: null,
     }),
 
     computed: {
@@ -406,30 +418,51 @@
 
     methods: {
       submit() {
-        this.$v.$touch()
+        var data = {
+          city: this.city,
+          company: this.company,
+          model: this.model,
+          description: this.description,
+
+          year: this.year,
+          mileage: this.mileage,
+          engine_volume: this.engine_volume,
+
+          gear: this.gear,
+          transmission: this.transmission,
+          shell: this.shell,
+
+          rudder: this.rudder,
+          custom_clear: this.custom_clear,
+          type_engine: this.type_engine,
+        };
+
+        console.log(data);
+        // post api
+        // get api
       },
       step1() {
-        if( this.company == null ) return true;
-        if( this.model == null ) return true;
-        if( this.city == null ) return true;
+        if (this.company == null) return true;
+        if (this.model == null) return true;
+        if (this.city == null) return true;
         return false;
       },
       step2() {
-        if( this.year == null || this.year > 2020 || this.year < 1940 ) return true;
-        if( this.mileage == null ) return true;
-        if( this.engine_volume == null || this.engine_volume > 4 ) return true;
-        if( this.rudder == null ) return true;
-        if( this.transmission == null ) return true;
-        if( this.gear == null ) return true;
-        if( this.custom_clear == null ) return true;
-        if( this.shell == null ) return true;
-        if( this.type_engine == null ) return true;
+        if (this.year == null || this.year > 2020 || this.year < 1940) return true;
+        if (this.mileage == null) return true;
+        if (this.engine_volume == null || this.engine_volume > 4) return true;
+        if (this.rudder == null) return true;
+        if (this.transmission == null) return true;
+        if (this.gear == null) return true;
+        if (this.custom_clear == null) return true;
+        if (this.shell == null) return true;
+        if (this.type_engine == null) return true;
         return false;
       },
       nextStep() {
         console.log("Next Step");
         this.e13 = this.e13 + 1;
-        if( this.e13 > 4 )
+        if (this.e13 > 4)
           this.e13 = 1;
       }
     },
