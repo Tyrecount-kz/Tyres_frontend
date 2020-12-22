@@ -1,17 +1,17 @@
 <template>
     <v-card class="mx-auto" max-width="400">
-        <v-card-title class="white--text primary darken-4">
+        <v-card-title class="white--text primary">
             Cars list
             <v-spacer></v-spacer>
         </v-card-title>
 
-        <v-card-text class="pt-4">
+        <!-- <v-card-text class="pt-4">
             you can compare cars
-        </v-card-text>
+        </v-card-text> -->
 
         <v-divider></v-divider>
 
-        <v-virtual-scroll :items="items" :item-height="50" height="300">
+        <v-virtual-scroll :items="items" :item-height="50" height="350">
             <template v-slot:default="{ item }">
                 <v-list-item>
 
@@ -26,7 +26,7 @@
                             depressed small
                             @click="DeleteFromWishlist(car.id)"
                         >
-                        <v-icon>mdi-heart</v-icon>
+                        <v-icon>mdi-delete </v-icon>
                         </v-btn>
                     </v-list-item-action>
 
@@ -36,7 +36,7 @@
                             small
                         >
                             <v-icon
-                                color="primary darken-4"
+                                color="primary  "
                             >
                                 mdi-open-in-new
                             </v-icon>

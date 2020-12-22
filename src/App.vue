@@ -4,7 +4,7 @@
       
     <nav_bar />
     
-    <v-main class="grey lighten-3 stable">
+    <v-main class="grey lighten-4 stable">
       <router-view class="child-view"></router-view>
     </v-main>
 

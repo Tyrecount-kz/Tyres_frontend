@@ -3,7 +3,8 @@
         <v-row class="text-center">
 
             <v-col>
-                <h1> Wishlist </h1>
+                
+                <h1> <v-icon color="pink" >mdi-heart </v-icon>  Wishlist </h1>
                 <small> you can compare liked cars and pick one for you </small>
             </v-col>
 

@@ -6,10 +6,12 @@
     data () {
       return {
         chartData: {
+          // cars titles  
           labels: ["Toyota Camry",	"Mercedez",	"Daegu",	"Jerusalem",	"Fairfield",	"New York",	"Gangtok", "Buenos Aires", "Hafar Al-Batin", "Idlib"],
           datasets: [
             {
               label: 'Price',
+              // prices
               data: [600,	1150,	342,	6050,	2522,	3241,	1259,	157,	1545, 9841],
               fill: false,
               borderColor: '#2554FF',
@@ -17,7 +19,8 @@
               borderWidth: 1
             },
             {
-              label: 'Mileage',
+              label: 'Year',
+              // years
               data: [6000,	150, 32, 60500,	25222,	30241,	259, 157,	1545, 9841],
               fill: false,
               borderColor: '#32a852',
@@ -26,12 +29,22 @@
             },
             {
               label: 'Engine Volume',
+              // engine volumes
               data: [600,	1150,	342,	6050,	2522,	3241,	1259,	157,	1545, 9841],
               fill: false,
-              borderColor: '#9e0da8',
-              backgroundColor: '#9e0da8',
+              borderColor: '#fcba03',
+              backgroundColor: '#fcba03',
               borderWidth: 1
-            }
+            },
+            {
+              label: 'Mileage',
+              // mileages
+              data: [600,	1150,	342,	6050,	2522,	3241,	1259,	157,	1545, 9841],
+              fill: false,
+              borderColor: '#910f2b',
+              backgroundColor: '#910f2b',
+              borderWidth: 1
+            },
           ]
         },
         options: {

@@ -5,10 +5,6 @@
             <v-col>
                 <h1> {{title}} </h1>
             </v-col>
-            <v-col>
-
-                <a @click="openCarDetail(1)"> Car detail </a>
-            </v-col>
         </v-row>
         <v-row>
             <v-col cols="4" v-for="car in cars" :key="car.id">
