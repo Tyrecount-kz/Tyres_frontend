@@ -24,7 +24,7 @@
                             icon 
                             color="pink" 
                             depressed small
-                            @click="DeleteFromWishlist(car.id)"
+                            @click="DeleteFromWishlist(1)"
                         >
                         <v-icon>mdi-delete </v-icon>
                         </v-btn>
@@ -34,6 +34,7 @@
                         <v-btn 
                             icon 
                             small
+                            @click="openCarDetail(1)"
                         >
                             <v-icon
                                 color="primary  "
@@ -49,6 +50,12 @@
 </template>
 
 <script>
+
+    import {
+        mapActions,
+        // mapGetters
+    } from 'vuex';
+
     export default {
         data: () => ({
             colors: ['#2196F3', '#90CAF9', '#64B5F6', '#42A5F5', '#1E88E5', '#1976D2', '#1565C0', '#0D47A1',
@@ -78,9 +85,9 @@
 
                 return Array.from({
                     length: 10000
-                }, (k, v) => {
+                },() => {
 
-                    console.log(k, v);
+                    // var t = k + v;
 
                     const name = this.names[this.genRandomIndex(namesLength)]
                     const surname = this.surnames[this.genRandomIndex(surnamesLength)]
@@ -95,8 +102,20 @@
         },
 
         methods: {
+            ...mapActions(['fetchCar']),
+
             genRandomIndex(length) {
                 return Math.ceil(Math.random() * (length - 1))
+            },
+
+            DeleteFromWishlist(id) {
+                console.log("will be deleted to ws: " + id);
+            },
+            
+            openCarDetail(id) {
+                this.fetchCar(id);
+
+                this.$router.push('/car_detail');
             },
         },
     }

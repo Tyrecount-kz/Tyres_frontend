@@ -2,7 +2,10 @@
     <v-container>
 
         <nav_bar />
-        <cars />
+        
+        <v-sheet min-height="70vh" class="my-5" rounded="lg">
+            <cars />
+        </v-sheet>
 
     </v-container>
 </template>
