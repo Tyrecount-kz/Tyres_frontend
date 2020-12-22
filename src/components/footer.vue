@@ -34,9 +34,7 @@
         'Home',
         'About Us',
         'Team',
-        'Services',
-        'Blog',
-        'Contact Us',
+        'GitHub',
       ],
     }),
   }

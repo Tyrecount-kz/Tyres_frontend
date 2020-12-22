@@ -21,7 +21,7 @@
     name: 'App',
     data: () => ({
       links: {
-        'Profile' : 'profile',
+        'Profile' : 'profile/wishlist',
         'Market' : 'market',
         'Add car' : 'add_new_car',
         'Wishlist' : 'profile/wishlist',
