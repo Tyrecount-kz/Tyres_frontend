@@ -8,6 +8,8 @@
       <router-view class="child-view"></router-view>
     </v-main>
 
+    <Footer />
+
     <!-- </transition> -->
   </v-app>
 </template>
@@ -15,12 +17,14 @@
 <script>
 
   import nav_bar from './components/nav_bar';
+  import Footer from './components/footer';
 
   export default {
     name: 'App',
 
     components: {
       nav_bar,
+      Footer,
     }
   }
 </script>

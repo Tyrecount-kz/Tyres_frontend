@@ -147,17 +147,21 @@
     </v-stepper-content>
 
     <v-stepper-step step="4">
-      View setup instructions
+      View the car's ad. page
     </v-stepper-step>
 
     <v-stepper-content step="4">
-      <v-card color="grey lighten-1" class="mb-12" height="200px"></v-card>
-      <v-btn color="primary" @click="nextStep()">
-        Continue
-      </v-btn>
-      <v-btn text>
+      <v-card color="grey lighten-4" class="mb-12 text-center d-flex flex-column align-center justify-space-around" height="100px">
+          <h3>Your car's price was predicted and published on the market</h3>
+          <router-link :to="{name:'market'}">
+            <v-btn color="primary">
+              Market
+            </v-btn>
+          </router-link>
+      </v-card>
+      <!-- <v-btn text>
         Cancel
-      </v-btn>
+      </v-btn> -->
     </v-stepper-content>
   </v-stepper>
 </template>

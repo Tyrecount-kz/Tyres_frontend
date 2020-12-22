@@ -18,6 +18,7 @@ export default [{
     },
     {
         path: '/profile',
+        name: 'profile',
         component: profile,
         children: [{
                 name: 'my_cars',
@@ -34,14 +35,17 @@ export default [{
     },
     {
         path: '/add_new_car',
+        name: 'add_new_car',
         component: AddNewCar,
     },
     {
         path: '/car_detail',
+        name: 'car_detail',
         component: CarDetails,
     },
     {
         path: '/market',
+        name: 'market',
         component: Market,
     },
 ]
