@@ -1,7 +1,6 @@
 <template>
     <v-container>
         <v-row class="text-center">
-
             <v-col>
                 <h1> {{title}} </h1>
             </v-col>
@@ -9,10 +8,7 @@
         <v-row>
             <v-col cols="4" v-for="car in cars" :key="car.id">
 
-                <card
-                    v-if="car.id%2==0"
-                 />
-                <card v-else :car="car" />
+                <card :car="car" />
             </v-col>
         </v-row>
     </v-container>
@@ -42,7 +38,7 @@
         },
 
         mounted() {
-            this.fetchCars();
+            this.fetchCars(); 
         },
 
 

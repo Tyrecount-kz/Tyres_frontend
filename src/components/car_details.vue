@@ -5,11 +5,11 @@
 
         <h3> Car details </h3>
 
-        <h1> {{car.title}} </h1>
+        <h1> {{car.post_name}} </h1>
 
 
         <v-btn 
-          v-if="car.isAdded"
+          v-if="car.added_to_wishlist === 1"
           icon 
           color="pink" 
           x-large 
@@ -21,9 +21,8 @@
         <v-btn 
           v-else
           icon 
-          color="pink" 
+          color="grey" 
           x-large 
-          disabled
           @click="ToWishlist(car.id)"
         >
           <v-icon>mdi-heart</v-icon>
@@ -43,8 +42,10 @@
       </v-col>
       <v-col cols="8">
         <v-card class="pa-md-4 mx-lg-auto" min-height="175">
-          <h1> Description </h1>
-          <p> {{car.description}} </p>
+          <h3> Description </h3>
+          <p> {{car.post_description}} </p>
+          <h3> City </h3>
+          <p> {{car.city}} </p>
         </v-card>
       </v-col>
     </v-row>
@@ -57,7 +58,7 @@
         <div class="d-flex flex-column justify-space-between align-center">
           <v-slider v-model="width" class="align-self-stretch" min="400" max="750" step="1"></v-slider>
 
-          <v-img :aspect-ratio="16/9" :width="width" :src="car.img"></v-img>
+          <v-img :aspect-ratio="16/9" :width="width" :src="img_link_placeholder"></v-img>
         </div>
       </v-col>
     </v-row>
@@ -76,6 +77,7 @@
     name: 'App',
     data: () => ({
       width: 600,
+      img_link_placeholder: "https://cdn.vuetifyjs.com/images/cards/docks.jpg",
     }),
 
     computed: {
@@ -83,16 +85,17 @@
 
       CarCharacteristics() {
         var chars = {
-          "company": this.car.company,
-          "model": this.car.model,
+          // "company": this.car.company,
+          "model": this.car.car_model,
           "shell": this.car.shell,
-          "mileage": this.car.mileage,
+          "mileage": this.car.mileage + ' km',
           "rudder": this.car.rudder,
           "color": this.car.color,
           "gear": this.car.gear,
           "custom_clear": this.car.custom_clear,
           "engine_volume": this.car.engine_volume,
           "transmission": this.car.transmission,
+          "release_year": this.car.release_year,
           // "isAdded": this.car.isAdded,
         };
         return chars;
@@ -116,7 +119,7 @@
       },
 
       DeleteFromWishlist(id) {
-        console.log("will be deleted to ws: " + id);
+        console.log("will be deleted from ws: " + id);
       }
 
     }

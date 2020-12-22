@@ -9,7 +9,7 @@
         <v-list dense>
             <v-list-item v-for="(key, val) in car" :key="key">
                 <v-list-item-content>
-                    {{ val }}:
+                   <b> {{ val }}: </b>
                 </v-list-item-content>
                 <v-list-item-content class="align-end">
                     {{ key }}

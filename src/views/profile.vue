@@ -7,7 +7,7 @@
                         <v-list-item v-for="(key, value) in ProfileData" :key="key">
                             <v-list-item-content>
                                 <v-list-item-title>
-                                    {{key}}: {{ Profile[value] }}
+                                    <b>{{key}}:</b> {{ Profile[value] }}
                                 </v-list-item-title>
                             </v-list-item-content>
                         </v-list-item>

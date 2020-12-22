@@ -11,6 +11,7 @@ const CarModule = {
         setCars(state, data) {
             console.log("setting Cars");
 
+            state.Cars = [];
             for (var i = 0; i < data.length; i++) {
                 state.Cars.push(data[i]);
             }
@@ -25,11 +26,11 @@ const CarModule = {
     },
     actions: {
         fetchCars({ commit }) {
-            axios.get("https://next.json-generator.com/api/json/get/Nk9w1CQ3Y")
+            axios.get("https://2almas016.pythonanywhere.com/api/cars/")
                 .then(
                     response => {
                         console.log(response.data);
-                        commit("setCars", response.data["cars"]);
+                        commit("setCars", response.data["results"]);
                     }
                 );
         },
@@ -44,11 +45,11 @@ const CarModule = {
         },
         fetchCar({ commit }, id) {
             console.log(id);
-            axios.get("https://next.json-generator.com/api/json/get/NJvlGAQ2F")
+            axios.get("https://2almas016.pythonanywhere.com/api/cars/" + id)
                 .then(
                     response => {
-                        console.log(response.data["car detail"][0]);
-                        commit("setCar", response.data["car detail"][0]);
+                        console.log(response.data);
+                        commit("setCar", response.data);
                     }
                 );
         },

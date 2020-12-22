@@ -4,7 +4,7 @@
         <nav_bar />
         
         <v-sheet min-height="70vh" class="my-5" rounded="lg">
-            <cars />
+            <cars :title='title'/>
         </v-sheet>
 
     </v-container>
@@ -18,6 +18,7 @@
 
         data: () => ({
             ecosystem: [],
+            title: 'Cars in market',
         }),
 
         components: {

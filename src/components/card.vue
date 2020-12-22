@@ -4,16 +4,16 @@
         class="mx-auto" 
         max-width="400"
     >
-        <v-img class="white--text align-end" height="200px" :src="car.img">
-            <v-card-title>{{car.title}}</v-card-title>
+        <v-img class="white--text align-end" height="200px" :src="img_link_placeholder">
+            <v-card-title>{{car.post_name}}</v-card-title>
         </v-img>
 
         <v-card-subtitle class="pb-0">
-            {{ onlyDate(car.date) }}
+            {{ onlyDate(car.created_date) }}
         </v-card-subtitle>
 
         <v-card-text class="text--primary">
-            <div>{{car.description}}</div>
+            <div>{{car.post_description}}</div>
         </v-card-text>
 
         <v-card-actions>
