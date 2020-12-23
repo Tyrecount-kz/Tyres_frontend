@@ -6,6 +6,7 @@ const CarModule = {
     state: () => ({
         Cars: [],
         Car: {},
+        Wishlist: {},
     }),
     mutations: {
         setCars(state, data) {
@@ -23,6 +24,11 @@ const CarModule = {
             state.Car = data;
             console.log(state.Car.company);
         },
+        setWishlist(state, data) {
+            console.log('setting wishlist');
+            state.Wishlist = data;
+            console.log(state.Wishlist);
+        }
     },
     actions: {
         fetchCars({ commit }) {
@@ -53,6 +59,17 @@ const CarModule = {
                     }
                 );
         },
+        fetchWishlist({ commit }) {
+            axios.get("https://2almas016.pythonanywhere.com/api/cars/")
+
+            // axios.get("https://2almas016.pythonanywhere.com/api/wishlist/")
+            .then(
+                response => {
+                    console.log(response.data);
+                    commit("setWishlist", response.data);
+                }
+            );
+        }
     },
     getters: {
         cars(state) {
@@ -60,6 +77,9 @@ const CarModule = {
         },
         car(state) {
             return state.Car;
+        },
+        wishlist(state) {
+            return state.Wishlist;
         }
     },
 }

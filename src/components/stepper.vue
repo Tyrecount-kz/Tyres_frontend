@@ -443,6 +443,16 @@
 
         console.log(data);
         // post api
+        
+        console.log("Upload");
+                        
+        // const article = { title: "Vue POST Request Example" };
+        // const headers = { 
+        //     "Authorization": "Bearer my-token",
+        //     "My-Custom-Header": "foobar"
+        // };
+        // axios.post("https://reqres.in/api/articles", article, { headers })
+        //     .then(response => this.articleId = response.data.id);
         // get api
       },
       step1() {

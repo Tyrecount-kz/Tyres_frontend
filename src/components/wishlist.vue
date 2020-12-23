@@ -24,7 +24,7 @@
 <script>
     import {
         mapActions,
-        mapGetters
+        // mapGetters
     } from 'vuex';
 
     import Chart from '../components/chart_comp';
@@ -38,7 +38,7 @@
         },
 
         mounted() {
-            this.fetchCars();
+            // this.fetchWishlist();
         },
 
         components: {
@@ -47,16 +47,15 @@
         },
 
         computed: {
-            ...mapGetters(['cars']),
+            // ...mapGetters(['wishlist']),
             
         },
 
         methods: {
-            ...mapActions(['fetchCar', 'fetchCars']),
+            ...mapActions(['fetchCar']),
 
             openCarDetail(id) {
                 this.fetchCar(id);
-
                 this.$router.push('/car_detail');
             },
 

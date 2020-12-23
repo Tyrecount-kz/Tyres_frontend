@@ -67,6 +67,7 @@
 
 <script>
   import characteristics from '../components/characteristics.vue';
+  import axios from 'axios';
 
   import {
     mapActions,
@@ -114,11 +115,21 @@
         this.$router.go(-1);
       },
 
+      postRequest(url, id){
+        const headers = { 
+            "Authorization": "Bearer my-token",
+            "My-Custom-Header": "foobar"
+        };
+        axios.post("https://2almas016.pythonanywhere.com/api/cars/" + url + id, { headers });
+      },
+
       ToWishlist(id) {
-        console.log("will be added to ws: " + id);
+        console.log("will be added from ws: " + id);
+        this.postRequest('wishlist-add/', id);
       },
 
       DeleteFromWishlist(id) {
+        this.postRequest('wishlist-del/', id);
         console.log("will be deleted from ws: " + id);
       }
 

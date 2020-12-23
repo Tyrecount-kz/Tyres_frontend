@@ -49,9 +49,6 @@
         },
 
         methods: {
-            uploadData(){
-                console.log("Upload");
-            }
         },
 
     }

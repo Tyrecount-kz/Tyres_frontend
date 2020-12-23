@@ -1,5 +1,10 @@
 <script>
-  import { Line } from 'vue-chartjs'
+  import { Line } from 'vue-chartjs';
+  import axios from 'axios'
+  import {
+      // mapActions,
+      // mapGetters
+  } from 'vuex';
 
   export default {
     extends: Line,
@@ -71,8 +76,27 @@
         }
       }
     },
+
+    computed: {      
+      // ...mapGetters(['wishlist']),  
+    },
+
+    methods: {
+      // ...mapActions(['fetchWishlist']),
+    },
+
     mounted () {
-      this.renderChart(this.chartData, this.options)
+
+      axios.get("https://2almas016.pythonanywhere.com/api/cars/")
+      .then(
+          response => {
+              console.log(response.data);
+              console.log("done")
+              // commit("setWishlist", response.data);
+              this.renderChart(this.chartData, this.options);  
+          }
+      );
+
     }
   }
 </script>
