@@ -20,7 +20,7 @@
             </v-col>
 
             <v-col cols="4">
-              <v-select v-model="model" label="Model" :items="models" :rules="[rules.required]" class="mb-1"
+              <v-select v-model="model" label="Model" :items="models[company]" :rules="[rules.required]" class="mb-1"
                 single-line></v-select>
             </v-col>
           </v-row>
@@ -151,13 +151,14 @@
     </v-stepper-step>
 
     <v-stepper-content step="4">
-      <v-card color="grey lighten-4" class="mb-12 text-center d-flex flex-column align-center justify-space-around" height="100px">
-          <h3>Your car's price was predicted and published on the market</h3>
-          <router-link :to="{name:'market'}">
-            <v-btn color="primary">
-              Market
-            </v-btn>
-          </router-link>
+      <v-card color="grey lighten-4" class="mb-12 text-center d-flex flex-column align-center justify-space-around"
+        height="100px">
+        <h3>Your car's price was predicted and published on the market</h3>
+        <router-link :to="{name:'market'}">
+          <v-btn color="primary">
+            Market
+          </v-btn>
+        </router-link>
       </v-card>
       <!-- <v-btn text>
         Cancel
@@ -202,142 +203,181 @@
       ].sort(),
 
       model: null,
-      models: ['Niva', 'Cadenza', 'LT', 'Camry', 'Pajero', ' 1995', 'Highlander',
-        'Elantra', 'Accent', 'Tacoma', 'Vectra', 'Golf', 'E 200', 'Passat',
-        'Corolla', '2113 (хэтчбек)', '525', 'Outback', 'Sandero Stepway',
-        'X5', 'Scepter', 'Hilux', '520', 'GX 460', 'Crown', 'Touareg',
-        'E 280', 'Yeti', '2114 (хэтчбек)', 'Rio', 'Qashqai', 'Hilux Surf',
-        'Niro', 'Teana', 'Focus', '2190 (седан)', 'G 240', 'Emgrand X7',
-        '2171 (универсал)', 'Sharan', 'RX 300', 'Pajero IO', 'on-DO', '3',
-        'E 320', 'Tracker', '2115 (седан)', 'E 230', 'Primera', 'Civic',
-        '2170 (седан)', 'Largus', 'Serena', 'Bora', 'Alphard', 'Legacy',
-        'E 260', 'Delica', 'Eclipse', 'Nexia', 'Orlando', '6', 'Cruze',
-        'Avante', 'GLK 300', 'A8', 'Juke', '2121 Нива', 'E 300', 'Hunter',
-        'Smily', 'Yaris', 'Land Cruiser Prado', 'Morning', '2110 (седан)',
-        'V5', 'Duster', 'Vesta', 'GS 350', 'ES 350', '318', '523', 'E 350',
-        'Altezza', 'FX35', 'Polo', 'Fabia', 'X-Trail', '21099 (седан)',
-        '80', 'Chance', 'Estima', 'C 240', 'Istana', 'Pathfinder',
-        '400 Series', 'Carina E', 'Town Car', 'S3', 'RAV 4', 'Cayenne',
-        'Vida', 'Forester', 'RX 350', 'Tribeca', '2107', '100', 'A6', 'A4',
-        'Rapid', '3303', 'Stonic', 'Epica', 'NX 200', 'GLK 250', 'CR-V',
-        'Elysion', 'Premacy', 'Patrol', 'Micra', 'Breez', 'Maxima',
-        '2131 (5-ти дверный)', 'Sonata', '300M', 'Tucson', 'Ducato',
-        'RX 330', '190', 'Cerato', 'Corsa', 'Patriot', 'Grandeur', 'G 320',
-        '528', ' 2012', 'Creta', 'Cefiro', 'Space Wagon', 'Sportage',
-        '323', 'Vista', 'Cee’d', 'X60', 'Voxy', 'Lancer', ' 1996', 'Fuga',
-        'ML 320', 'Matrix', 'Getz', 'B 180', 'Galant', 'Grandis', 'K5',
-        '605', 'Ipsum', 'S60', 'Aveo', 'Frontera', 'Q7', 'Vesta Cross',
-        'Astra', 'ES 250', 'X1', 'Starex', 'RX 400h', 'Sorento',
-        'Crown Majesta', 'LS 460', 'A3', 'Avensis', 'Jetta',
-        '2112 (хэтчбек)', '307', 'Captiva', 'Almera', '206', 'A5',
-        'ML 350', 'Impreza', 'Optima', 'RX8', 'Mark X', 'C 180', '530',
-        'Odyssey', 'Lacetti', '2192 (хэтчбек)', 'S 500', 'Solano',
-        'Fiesta', 'Soul', 'Santa Fe', 'Cedric', 'Note', 'Outlander',
-        'A6 allroad', 'Sentra', 'Octavia', 'Multivan', 'Cronos',
-        '2172 (хэтчбек)', 'Gentra', '2191 (лифтбек)', 'Grand Cherokee',
-        'Sintra', 'D60', 'Q50', '2106', 'Logan', 'CLS 350', 'RVR',
-        'Airtrek', 'ES 330', 'G37', 'Tribute', 'Land Cruiser', '407',
-        'Solaris', 'Nadia', '2104', 'Spark', 'Camry Gracia', 'SX4',
-        'Nexia R3', 'GS 300', 'Sienna', 'Carnival', 'Transporter',
-        'HiAce Regius', 'Carisma', 'Stepwgn', '2109 (хэтчбек)', 'Mark II',
-        'QX60', '626', 'S 350', 'Kyron', 'Grand Vitara', '630', 'C 280',
-        'Picnic', 'C 200', 'G70', 'K7', 'Equus', 'S 320', 'Sandero',
-        'Lanos', 'Carens', 'XRAY', 'MPV', 'Cabrio', 'XF', 'L200', 'Pickup',
-        '328', 'Land Range  Sport', '728', '5', 'RX 270', 'Superb',
-        'C 220', 'CX-7', 'X6', 'Sigma', 'Trafic', 'CLA 45 AMG',
-        'Cerato Koup', 'Eclipse Cross', 'Harrier', 'Space Runner', '300C',
-        'Granvia', 'Altima', '325', '2194 (универсал)', '2008',
-        '1119 (хэтчбек)', 'Land Range ', 'Nubira', 'Galaxy', 'Legend',
-        'Land Discovery', 'Picanto', 'XV', 'R4', 'Kodiaq', 'Symbol', '330',
-        'Land Defender', '316', '508', 'Diamante', 'Murano',
-        'Almera Classic', 'Land Range  Evoque', 'Taurus', 'QX50', 'SC7',
-        'Urban Cruiser', 'Pilot', '301', 'C 320', 'GC6',
-        '2111 (универсал)', 'QX70', 'A 160', 'Largus (фургон)', 'Xedos 6',
-        'GLC 250', '406', 'Escape', 'Noah', 'XL7', 'Caddy', '735', 'Tino',
-        'Cebrium', 'Буханка', 'Viano', 'FX37', 'Jimny', 'Transit',
-        'Meriva', 'S-Max', 'Caravelle', 'Sentia', 'Estima Lucida',
-        'Aspire', 'i', 'R2', 'Aristo', 'Inspire', 'Tunland', 'ASX', '2123',
-        'Нива', 'Accord', 'C-HR', 'March', '600 Series', 'Navara', 'Hatch',
-        'HiAce', 'Venza', 'Auris', 'Alto', 'Korando', 'Town Ace Noah',
-        'Mondeo', 'E 240', 'Tivoli', 'Voleex C30', '1118 (седан)', '1117 (универсал)', 'Mistral', 'Tiguan',
-        'Terrano', 'Kaptur',
-        'Impreza WRX STi', 'Panda', 'Wrangler', 'X70', 'Ranger', 'NP300',
-        'S4', 'Passat CC', 'CLA 200', '740', 'Corolla Verso', 'GLA 200',
-        '750', 'Avalon', 'Impreza WRX', 'Largus Cross', 'M35',
-        'Land Freelander', 'ES 200', 'IS 250', 'Tundra', 'SM7', 'Tiida',
-        ' 2001', 'i30', 'FJ Cruiser', 'Bongo', 'Vito', 'NX 200t',
-        'Countryman', 'Dion', 'GL 350', 'ML 400', 'Rexton', 'Omega',
-        'X6 M', 'Soarer', 'G35', 'C4', 'C 300', 'RX 200t', 'PT Cruiser',
-        'Amulet (A15)', 'Amarok', 'Pajero Sport', 'Tiggo 5', 'Windom',
-        'Spectra', 'Gaia', '320', 'Actyon Sports', 'GLA 45 AMG',
-        'Cavalier', '2717', 'Avenir', 'GL 450', 'H3', 'Vitara', 'EX35',
-        '2105', 'Espero', 'Megane', 'Sprinter', 'Alpha', 'M5', 'Escalade',
-        'XJ', 'Montero Sport', 'Prelude', 'C 250', 'E 400', 'Opelafira',
-        'TT', 'Golf Plus', 'Fit Aria', 'Fora', 'GL 400', 'MK',
-        'Quattroporte', 'E 220', 'Echo', 'A7', 'H-1', 'Previa', '3151',
-        'Antara', 'C 230', 'GS 450h', 'Opa', 'CLK 320', 'V70', 'E 420',
-        'SubaruBR', 'Besturn B70', 'Mustang', 'X50', 'Vivaro', '745',
-        'Explorer', 'Touran', 'X5 M', 'CLA 220', 'UX 200', 'Quoris', '116',
-        'Fusion', 'Skyline', 'Malibu', 'ix35', 'Eunos 500', 'Elgrand',
-        'Quest', 'S 450', 'Master', 'Cobalt', 'Chaser', '1922 Бронто',
-        'CS35', '4Runner', 'Laguna', 'Caldina', '2108 (хэтчбек)', 'Kangoo',
-        'Besturn B50', 'GS 250', 'ML 270', 'Space Gear', 'Matiz', 'E 430',
-        'Actyon', 'Integra', 'Genesis', 'CX-9', ' 2003', 'Crafter', 'i40',
-        'Cayman', '535', 'A 45 AMG', 'Ram', 'GTO', 'Safari', 'ES 300',
-        'Magentis', 'X3', 'Hover M4', 'Liberty', '640', 'Sunny', 'Q30',
-        'Wingle 5', 'Punto', 'S80', 'Prius', 'ChanganBenBen ', 'Liana',
-        'Scirocco', 'CX-5', 'Landmark', 'Bluebird', 'Baleno', 'RX 450h',
-        'CE 230', 'Xedos 9', 'Starlet', 'XC90', '308', 'Tosca', 'FX45',
-        'ES 300h', 'Q70', '518', '2345 (Жигули)', 'Insight', '90',
-        'Leganza', 'Bongo Friendee', 'Caravan', 'Corona', 'Forza',
-        'Sweet (QQ)', 'Cube', 'Partner', '730', 'C 36 AMG', '540',
-        'Maverick', 'Urvan', 'B 200', 'Avensis Verso', 'Fortuner', 'MX3',
-        'QM6', 'Carina ED', 'Emgrand EC7', 'Pajero Pinin', 'S5', '850',
-        'Montero', 'Arkana', 'Orthia', 'Gloria', 'SL 300', 'LADA Priora',
-        'SLK 230', 'Tiggo', 'M11', '218', 'RC 350', 'T6',
-        '5-Series Gran Turismo', '4007', 'Tercel', 'CLA 250', 'Scenic',
-        'Nomad', 'S 420', 'Cresta', 'GTV', 'Mohave', 'Ray', ' 2005',
-        'Venga', 'R 350', '107', 'X4', 'Phaeton', 'Prairie', 'Brevis',
-        'XC70', 'Vento', 'Avenger', 'Stream', 'DS5', '1024', 'Terracan',
-        'Tico', '968', '6371', 'WRX', 'Shuma', 'Galloper', 'Carina',
-        'B 170', 'S-MX', 'V 250', 'Luba', 'Sierra', 'Santamo', 'Wish',
-        'Crossroad', 'Cami', 'Vellfire', 'Isis', 'Bighorn', 'Celliya',
-        ' 1993', '11113 Ока', '969', 'Camry Lumiere', 'Freed',
-        'Sprinter Carib', 'A 140', 'Opirus', '2329 (пикап)', 'S 280',
-        ' 2009', "R'nessa", 'Magnus', 'AD', 'Oley', 'Eado', 'Vista Ardeo',
-        'Legnum', 'Demio', 'Chariot', 'A 180', 'Q5', 'G80', 'Baja', 'RDX',
-        'G 550', 'Protege', 'C 400', 'Prius V', 'S6', 'Sup', 'Mokka',
-        'CLS 400', '412', 'Beetle', 'E 270', 'V40', 'Vel Satis', 'G25',
-        '350', 'Saber', 'Sens', 'Damas', '207', 'LS 430', 'Aygo',
-        'GLC 220', 'Tiggo 4', 'mi-DO', '3008', 'EX25', '469', 'IS 300',
-        'V80', 'Trajet', 'Tiggo 8', 'Domani', 'SM3', 'Insignia', 'Stinger',
-        'Vibe', 'Magnum', 'XA', 'Veloster', 'Laurel', 'Carina II',
-        'Impala', 'CS75', 'PeugeotRC', 'Tourneo Custom', 'GL 320', 'E 250',
-        'Camaro', 'Q60', 'HS 250h', 'S 400', 'G 300', 'Captur', 'Escudo',
-        'Rezzo', 'XG', 'Jumper', 'Tiburon', 'Chana SM8', 'ML 300', 'S 430',
-        'ML 430', 'Expedition', 'BMW3', 'Kuga', 'Cultus', 'Proceed',
-        'Land Discovery Sport', 'Edge', 'Verso', 'GLK 280', 'Samurai',
-        'X2', 'Matiz Creative', 'Tempra', 'Interstar', 'Vita', 'IS 350', 'Cherokee', 'Amulet', 'HR-V', 'S70',
-        'XE', 'Capella',
-        'Fusion (North America)', 'Porter', 'Honda', 'Solara', 'Click',
-        '911', 'Palio', 'L300', 'Legacy Lancaster', 'Estima Emina',
-        ' 1998', 'Challenger', 'Signum', '807', 'Scorpio', ' 2015', 'Will',
-        'Verossa', 'Justy', 'Caliber', 'Genesis Coupe', 'Lancer Evolution',
-        'Presage', 'G 350', 'Familia', 'Forte', '650', 'Bonus', 'M3',
-        'Stilo', 'CTS', '607', 'Wizard', 'Hover H3', 'TrailBlazer', '335',
-        'Leopard', 'Versa', ' 2011', 'Almera Tino', 'ToyotaMark X io',
-        '146', 'QX30', 'Clarus', 'H530', 'H30 Cross', 'Shuttle', 'Профи',
-        'Stratus', '9-5', 'Concorde', 'Colt', 'Trooper', 'Santana',
-        'S-Type', 'A 150', 'Terrano II', 'Sunshine', '2126 (Ода)',
-        'Nativa', 'Felicia', 'Fit', 'Hover', 'Raum', 'MX6', 'Vue', '645',
-        'GLK 200', 'Leone', 'Pulsar', 'ML 230', 'Largo', '25',
-        'LADA Largus', 'Duet', 'Myway', 'CK (Otaka)', 'Skylark', 'Rafaga',
-        'Premio', 'Materia', '2103', 'Lite Ace', 'Sprinter Marino',
-        'Corona Exiv', 'Lotze', 'Eunos 800', 'Concerto', 'J2', 'Boxer',
-        'Town Ace', 'NX 300h', 'Coupe', 'Venue', 'Rich', 'EcoSport',
-        'LADA Granta', 'V8', '405', '21106 (седан)', 'Jazz', '120',
-        'Element', 'Celsior', 'Kluger', 'RC 300', 'Space Star'
-      ].sort(),
+      
+
+      models: {
+        'Chevrolet': ['Niva', 'Tracker', 'Orlando', 'Cruze', 'Epica', 'Aveo', 'Captiva', 'Lacetti', 'Spark',
+          'Lanos', 'Suburban', 'Malibu', 'Cobalt', 'Tahoe', 'Express', 'Nexia', 'Impala', 'Camaro', 'Cavalier',
+          'TrailBlazer'
+        ],
+        'Kia': ['Cadenza', 'Rio', 'Niro', 'Morning', 'Stonic', 'Cerato', 'Sportage', 'Cee’d', 'K5', 'Sorento',
+          'Optima', 'Soul', 'Carnival', 'K7', 'Carens', 'Cerato Koup', 'Picanto', 'Bongo', 'Spectra', 'Quoris',
+          'Magentis', 'Shuma', 'Mohave', 'Ray', 'Venga', 'Opirus', 'K9', 'Stinger', 'Forte', 'Clarus', 'Lotze'
+        ],
+        'Volkswagen': ['LT', 'Golf', 'Passat', 'Touareg', 'Sharan', 'Bora', 'Polo', 'Amarok', 'Jetta', 'Multivan',
+          'Transporter', 'Caddy', 'Caravelle', 'Tiguan', 'Passat CC', 'Teramont', 'Golf Plus', 'Touran',
+          'Crafter', 'Scirocco', 'Phaeton', 'Vento', 'Beetle', 'Santana'
+        ],
+        'Toyota': ['Camry', 'Highlander', 'Tacoma', 'Corolla', 'Sequoia', 'Scepter', 'Hilux', 'Crown', 'Hilux Surf',
+          'Alphard', 'Yaris', 'Land Cruiser Prado', 'Altezza', 'Estima', 'Carina E', 'RAV 4', 'Mark II',
+          'Land Cruiser', 'Vista', 'Voxy', 'Matrix', 'Ipsum', 'Crown Majesta', 'Avensis', 'Mark X', 'Nadia',
+          'Camry Gracia', 'Sienna', 'HiAce Regius', 'Picnic', 'Tundra', 'Harrier', 'Granvia', 'Urban Cruiser',
+          'Noah', 'Estima Lucida', 'Aristo', 'C-HR', 'HiAce', 'Venza', 'Auris', 'Town Ace Noah', 'Corolla Verso',
+          'Avalon', 'FJ Cruiser', 'Soarer', 'Windom', 'Gaia', 'Cavalier', '4Runner', 'Echo', 'Previa', 'Opa',
+          'Chaser', 'Caldina', 'Century', 'Prius', 'Starlet', 'Corona', 'Avensis Verso', 'Fortuner', 'Carina ED',
+          'Tercel', 'Cresta', 'Brevis', 'Carina', 'Wish', 'Cami', 'Vellfire', 'Isis', 'Camry Lumiere',
+          'Sprinter Carib', 'Vista Ardeo', 'Curren', 'Prius V', 'Aygo', 'Land Cruiser 70', 'Carina II', 'Verso',
+          'Solara', 'Estima Emina', 'Will', 'Verossa', 'Sprinter', 'Corsa', 'Raum', 'Duet', 'Corona Exiv',
+          'Premio', 'Lite Ace', 'Sprinter Marino', 'Town Ace', 'Celsior', 'Kluger'
+        ],
+        'Mitsubishi': ['Pajero', 'Pajero IO', 'Delica', 'Eclipse', 'Space Wagon', 'Lancer', 'Galant', 'Grandis',
+          'Outlander', 'RVR', 'Airtrek', 'Carisma', 'L200', 'Sigma', 'Eclipse Cross', 'Space Runner', 'Diamante',
+          'Aspire', 'i', 'ASX', 'Dion', 'Pajero Sport', 'Montero Sport', 'Space Gear', 'GTO', 'Pajero Pinin',
+          'Montero', 'Legnum', 'Chariot', 'L300', 'Challenger', 'Lancer Evolution', 'Colt', 'Nativa', 'Space Star'
+        ],
+        'Lincoln': ['Navigator', 'Town Car'],
+        'Mercedes-Benz': [' 1995', 'E 200', 'E 280', 'G 240', 'E 320', 'E 230', ' 2015', 'E 260', 'GLK 300',
+          'S 500', 'E 300', 'S 63 AMG', 'E 350', 'C 240', 'CL 500', 'GLK 250', 'CLA 45 AMG', 'S 450', 'V 220',
+          '190', 'ML 63 AMG', 'G 320', ' 2012', ' 1996', 'ML 320', 'B 180', 'GL 450', 'GL 500', 'GLC 200',
+          'ML 350', 'S 600', 'C 180', 'G 55 AMG', 'E 55 AMG', 'CLS 350', 'S 350', 'E 63 AMG', 'C 280', 'S 560',
+          'G 63 AMG', 'C 200', 'S 320', 'CLS 500', 'C 220', 'V 250', 'G 500', 'GL 550', 'GL 63 AMG', 'C 320',
+          'A 160', 'GLC 250', 'Viano', 'E 240', 'GLS 450', 'CLA 200', 'GLA 200', ' 2001', 'CL 550', 'Vito',
+          'GLE Coupe 63 AMG', 'AMG GT', 'GL 350', 'ML 400', 'GL 400', 'S 400', 'C 300', 'S 260', 'GLA 45 AMG',
+          'GLE 450', 'E 53 AMG', 'Sprinter', 'C 250', 'E 400', 'S 550', 'E 220', 'C 230', 'CLK 320', 'E 420',
+          'CLA 220', 'ML 270', 'E 430', 'A 45 AMG', 'CL 63 AMG', 'SL 500', 'GLS 400', 'S 65 AMG', 'CLS 63 AMG',
+          'CE 230', 'E 500', 'C 36 AMG', 'B 200', 'S 280', 'SL 300', 'SLK 230', 'CLA 250', 'S 420', ' 2017',
+          ' 2005', 'R 350', 'B 170', 'SL 55 AMG', 'A 140', 'A 180', 'G 550', 'C 400', 'CLS 400', 'GLS 63 AMG',
+          'E 270', 'E 43 AMG', 'GLC 220', ' 2020', 'GL 320', 'E 250', 'G 300', 'GLE Coupe 350d', 'ML 300',
+          'S 430', 'ML 430', ' 1991', 'GLK 280', ' 2007', 'GLE 400', 'S 55', ' 1993', 'ML 55 AMG', ' 2000',
+          ' 1987', 'ML 500', 'G 350', 'A 150', 'GLK 200', 'ML 230', 'S 220'
+        ],
+        'Hyundai': ['Elantra', 'Accent', 'Avante', 'Sonata', 'Tucson', 'Grandeur', 'Creta', 'Getz', 'Starex',
+          'Santa Fe', 'Solaris', 'Equus', 'i30', 'H-1', 'ix35', 'Genesis', 'i40', 'Terracan', 'Galloper',
+          'Santamo', ' 2009', 'Trajet', 'Veloster', 'XG', 'Tiburon', 'Porter', 'Click', 'Genesis Coupe', 'Venue'
+        ],
+        'Opel': ['Vectra', 'Corsa', 'Frontera', 'Astra', 'Sintra', 'Meriva', 'Omega', 'Antara', 'Vivaro', 'Mokka',
+          'Insignia', 'Vita', 'Signum'
+        ],
+        'ВАЗ (Lada)': ['2113 (хэтчбек)', '2114 (хэтчбек)', '2190 (седан)', '2171 (универсал)', '2115 (седан)',
+          '2170 (седан)', 'Largus', '2121 Нива', '2110 (седан)', 'Vesta', '21099 (седан)', '2107',
+          '2131 (5-ти дверный)', 'Vesta Cross', '2112 (хэтчбек)', '2192 (хэтчбек)', '2172 (хэтчбек)',
+          '2191 (лифтбек)', '2106', '2104', '2109 (хэтчбек)', 'XRAY', '2194 (универсал)', '1119 (хэтчбек)',
+          '2111 (универсал)', 'Largus (фургон)', '2123', 'Нива', '1118 (седан)', '1117 (универсал)',
+          'Largus Cross', '2105', '1922 Бронто', '2108 (хэтчбек)', '2101', '2103', 'LADA Priora', '11113 Ока',
+          '2329 (пикап)', '2102', 'LADA Largus', 'LADA Granta', '21106 (седан)'
+        ],
+        'BMW': ['525', 'X5', '520', '328', '318', '523', '750', '528', 'X6', 'M3', 'X1', '530', '630', '650', '728',
+          '540', '325', '330', '316', '735', '730', '740', 'M760', 'X6 M', '320', 'M5', '745', 'X5 M', '116',
+          'X7', '535', 'X3', '640', '518', '323', '218', '5-Series Gran Turismo', 'X4', '760', ' 1993', ' 2020',
+          'X2', 'M4', '550', '335', ' 2011', '645', '120'
+        ],
+        'Ford': ['Mustang', 'Focus', 'Fiesta', 'Galaxy', 'Taurus', 'Escape', 'Transit', 'S-Max', 'Mondeo', 'Ranger',
+          'Expedition', 'Explorer', 'Fusion', 'F-Series', 'Maverick', 'Sierra', 'Tourneo Custom', 'Kuga', 'Edge',
+          'Fusion (North America)', 'Scorpio', 'EcoSport'
+        ],
+        'Subaru': ['Outback', 'Legacy', 'Forester', 'Tribeca', 'Impreza', 'XV', 'Impreza WRX STi', 'Impreza WRX',
+          'WRX', 'Baja', 'Legacy Lancaster', 'Justy', 'Leone'
+        ],
+        'Renault': ['Sandero Stepway', 'Duster', 'Logan', 'Sandero', 'Trafic', 'Symbol', 'Kaptur', 'Megane',
+          'Master', 'Laguna', 'Kangoo', 'Arkana', 'Scenic', 'Vel Satis', 'Captur'
+        ],
+        'Lexus': ['GX 460', 'LX 470', 'RX 300', 'LX 570', 'GS 350', 'ES 350', 'RX 350', 'NX 200', 'RX 330',
+          'ES 250', 'RX 400h', 'LS 460', 'ES 330', 'GS 300', 'RX 270', 'RX 200t', ' 2012', 'ES 200', 'IS 250',
+          'NX 300', 'NX 200t', 'LS 350', 'GX 470', 'LS 600h', 'GS 450h', 'UX 200', 'GS 250', ' 2003', 'ES 300',
+          'RX 450h', 'ES 300h', 'RC 350', 'LS 430', 'IS 300', ' 2005', ' 2020', 'HS 250h', 'LC', 'IS 350',
+          ' 1998', 'GS-F', 'NX 300h', 'RC 300'
+        ],
+        'Skoda': ['Yeti', 'Fabia', 'Rapid', 'Octavia', 'Superb', 'Kodiaq', 'Felicia'],
+        'Nissan': ['Qashqai', 'Teana', 'Primera', 'Serena', 'Juke', 'Patrol', 'X-Trail', 'Pathfinder', 'Micra',
+          'Maxima', 'Cefiro', 'Fuga', 'Almera', 'Cedric', 'Note', 'Sentra', 'Armada', 'Altima', 'Murano',
+          'Almera Classic', 'Tino', 'March', 'Navara', 'Mistral', 'Terrano', 'NP300', 'Tiida', 'Avenir',
+          'Skyline', 'Elgrand', 'Quest', 'Titan', 'GT-R', 'Safari', 'Liberty', 'Sunny', 'Bluebird', 'Cube',
+          'Urvan', 'Gloria', 'Prairie', "R'nessa", 'AD', 'Laurel', 'Interstar', 'Presage', 'Leopard', 'Versa',
+          'Almera Tino', 'Terrano II', 'Pulsar', 'Largo'
+        ],
+        'Geely': ['Emgrand X7', 'SC7', 'GC6', 'MK', 'Emgrand EC7', 'CK (Otaka)'],
+        'Datsun': ['on-DO', 'mi-DO'],
+        'Hummer': ['H2', 'H1', 'H3'],
+        'Mazda': ['3', '6', 'Premacy', '323', 'RX8', 'Cronos', 'Tribute', '626', 'MPV', 'CX-7', 'Xedos 6', 'Sentia',
+          'Eunos 500', 'CX-9', 'CX-5', 'Xedos 9', 'Bongo Friendee', 'MX3', 'Bongo', '5', 'Demio', 'Protege',
+          'Proceed', 'Capella', 'Familia', 'MX6', 'Eunos 800'
+        ],
+        'Honda': ['Civic', 'CR-V', 'Elysion', 'Odyssey', 'Stepwgn', 'Legend', 'Pilot', 'Inspire', 'Accord',
+          'Prelude', 'Fit Aria', 'Integra', 'Insight', 'Orthia', 'Stream', 'S-MX', 'Crossroad', 'Freed', 'Saber',
+          'Domani', 'HR-V', 'Shuttle', 'Fit', 'Rafaga', 'Concerto', 'Jazz', 'Element'
+        ],
+        'Daewoo': ['Nexia', 'Gentra', 'Nubira', 'Espero', 'Matiz', 'Tosca', 'Leganza', 'Tico', 'Magnus', 'Damas',
+          'Lanos', 'Rezzo', 'Matiz Creative', 'Lacetti'
+        ],
+        'Audi': ['A8', '80', '100', 'A6', 'A4', 'Q7', 'A3', 'A5', 'A6 allroad', 'Q8', 'S4', 'S8', 'TT', 'A7',
+          'RS 7', '90', 'Q5', 'S5', 'S6', 'V8'
+        ],
+        'УАЗ': ['Hunter', '3303', 'Patriot', 'Pickup', 'Буханка', '3151', '469', 'Профи'],
+        'Lifan': ['Smily', 'Breez', 'X60', 'Solano', 'Cebrium', 'X70', 'X50', 'Celliya', 'Myway'],
+        'FAW': ['V5', 'D60', 'Besturn B70', 'Besturn B50', '1024', '6371', 'Oley', 'V80', '1021'],
+        'Infiniti': ['FX35', 'Q50', 'QX56', 'G37', 'QX60', 'QX80', 'QX50', 'QX70', 'FX37', 'M35', 'FX50', 'G35',
+          'EX35', 'Q30', 'FX45', 'Q70', 'G25', 'EX25', 'Q60', 'QX30'
+        ],
+        'ЗАЗ': ['Chance', 'Vida', 'Forza', '968', 'Sens'],
+        'SsangYong': ['Istana', 'Kyron', 'Korando', 'Tivoli', 'Rexton', 'Actyon Sports', 'Actyon', 'Nomad'],
+        'Rover': ['400 Series', 'Land Range  Sport', 'Land Range  Velar', 'Land Range ', 'Land Discovery',
+          'Land Defender', 'Land Range  Evoque', '600 Series', 'Land Freelander', 'Land Discovery Sport', '25'
+        ],
+        'JAC': ['S3', 'S5', 'T6', 'J2'],
+        'Porsche': ['Cayenne', 'Panamera', 'Macan', 'Cayman', '911'],
+        'Jeep': ['Grand Cherokee', 'Wrangler', 'Gladiator', 'Liberty', 'Patriot', 'Cherokee'],
+        'Chrysler': ['300M', '300C', 'PT Cruiser', 'Concorde'],
+        'Fiat': ['Ducato', 'Panda', 'Punto', 'Tempra', 'Palio', 'Stilo'],
+        'Peugeot': ['605', '307', '206', '407', '2008', '508', '301', '406', '308', 'Partner', '4007', '107', '207',
+          '3008', '807', '607', 'Boxer', '405'
+        ],
+        'Volvo': ['S60', 'V70', 'S80', 'XC90', '850', 'XC70', 'V40', 'S70'],
+        'Suzuki': ['SX4', 'Grand Vitara', 'XL7', 'Jimny', 'Alto', 'Vitara', 'Liana', 'Baleno', 'Escudo', 'Cultus',
+          'Samurai'
+        ],
+        'Ravon': ['Nexia R3', 'R4', 'R2', 'Gentra'],
+        'Genesis': ['G70', 'G80'],
+        'Mini': ['Cabrio', 'Hatch', 'Countryman', 'ChanganBenBen ', 'Coupe'],
+        'Jaguar': ['XF', 'XJ', 'XJS', 'XE', 'S-Type'],
+        'MG': ['5', '350'],
+        'Bentley': ['Bentayga', 'Continental GT', 'Arnage', 'Continental Flying Spur'],
+        'Foton': ['Tunland', 'Alpha', 'Sup'],
+        'Great Wall': ['Voleex C30', 'Hover M4', 'Wingle 5', 'Hover H3', 'Hover'],
+        'Renault Samsung': ['SM7', 'QM6', 'SM3'],
+        'Maserati': ['Quattroporte', 'Ghibli', 'Levante', 'GranTurismo'],
+        'Chery': ['QQ', 'Amulet (A15)', 'Tiggo 5', 'Fora', 'Sweet (QQ)', 'Tiggo', 'M11', 'Tiggo 4', 'Tiggo 8',
+          'Amulet', 'Bonus'
+        ],
+        'Citroen': ['C4', 'DS5', 'Jumper'],
+        'Mercedes-Maybach': ['S 600', 'S 500'],
+        'ИЖ': ['2717', '2126 (Ода)'],
+        'Cadillac': ['Escalade', 'SRX', 'CTS', 'Fleetwood'],
+        'Z': ['Opelafira', 'SubaruBR', 'PeugeotRC', 'BMW3', 'Honda', 'ToyotaMark X io'],
+        'Changan': ['CS35', 'Eado', 'CS75', 'Chana SM8'],
+        'Москвич': ['412'],
+        'Dodge': ['Ram', 'Caravan', 'Avenger', 'Magnum', 'Caliber', 'Stratus', 'Challenger'],
+        'ZX': ['Landmark'],
+        'ВИС': ['2345 (Жигули)'],
+        'Alfa Romeo': ['GTV', '146'],
+        'Lamborghini': ['Gallardo'],
+        'GMC': ['Savana', 'Envoy', 'Sierra', 'Yukon'],
+        'BAW': ['Luba'],
+        'Isuzu': ['Bighorn', 'Wizard', 'Trooper'],
+        'ЛуАЗ': ['969'],
+        'Maybach': ['57'],
+        'Acura': ['RDX'],
+        'BYD': ['S6'],
+        'Pontiac': ['Vibe'],
+        'Scion': ['XA'],
+        'Haima': ['M3'],
+        'Brilliance': ['H530'],
+        'DongFeng': ['H30 Cross', 'Rich'],
+        'Saab': ['9-5'],
+        'Wuling': ['Sunshine'],
+        'Saturn': ['Vue'],
+        'Buick': ['Skylark'],
+        'Daihatsu': ['Materia', 'Charade']
+      },
 
       city: null,
       cities: ['Уральск', 'Нур-Султан (Астана)', 'Тараз', 'Алматы', 'Караганда',
@@ -443,9 +483,9 @@
 
         console.log(data);
         // post api
-        
+
         console.log("Upload");
-                        
+
         // const article = { title: "Vue POST Request Example" };
         // const headers = { 
         //     "Authorization": "Bearer my-token",
