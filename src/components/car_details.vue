@@ -122,13 +122,15 @@
         };
         axios.post("https://2almas016.pythonanywhere.com/api/cars/" + url + id, { headers });
       },
-
+      
       ToWishlist(id) {
+        this.car.added_to_wishlist = 1;
         console.log("will be added from ws: " + id);
         this.postRequest('wishlist-add/', id);
       },
 
       DeleteFromWishlist(id) {
+        this.car.added_to_wishlist = 0;
         this.postRequest('wishlist-del/', id);
         console.log("will be deleted from ws: " + id);
       }

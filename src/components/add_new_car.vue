@@ -20,7 +20,8 @@
 <script>
     import {
         // mapActions,
-        // mapGetters
+        mapGetters,
+        mapMutations
     } from 'vuex';
 
     import stepper from '../components/stepper';
@@ -46,9 +47,15 @@
         },
 
         computed: {
+            ...mapGetters(["car"])
         },
 
         methods: {
+            ...mapMutations(["setCar"]),
+            moveToFinal(data){
+                this.price = data
+                console.log(this.price)
+            }
         },
 
     }

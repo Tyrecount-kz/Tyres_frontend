@@ -169,6 +169,12 @@
 
 
 <script>
+  import axios from "axios"
+  import {
+        // mapActions,
+        mapGetters,
+        mapMutations
+    } from 'vuex';
   export default {
 
     data: () => ({
@@ -457,27 +463,27 @@
     }),
 
     computed: {
-
+      ...mapGetters(["car"])
     },
 
     methods: {
+      ...mapMutations(["setCar"]),
       submit() {
         var data = {
           city: this.city,
           company: this.company,
           model: this.model,
-          description: this.description,
 
           year: this.year,
           mileage: this.mileage,
-          engine_volume: this.engine_volume,
+          volume: this.engine_volume,
 
           gear: this.gear,
-          transmission: this.transmission,
+          transmisson: this.transmission,
           shell: this.shell,
 
           rudder: this.rudder,
-          custom_clear: this.custom_clear,
+          custom_cleared: this.custom_clear,
           type_engine: this.type_engine,
         };
 
@@ -486,13 +492,11 @@
 
         console.log("Upload");
 
-        // const article = { title: "Vue POST Request Example" };
-        // const headers = { 
-        //     "Authorization": "Bearer my-token",
-        //     "My-Custom-Header": "foobar"
-        // };
-        // axios.post("https://reqres.in/api/articles", article, { headers })
-        //     .then(response => this.articleId = response.data.id);
+        axios.post("http://localhost:8000/prediction/", data, { auth: {
+          username: "bekmaganbetov.janbolat@gmail.com",
+          password: "admin"
+        } })
+             .then(response => this.moveToFinal(response.data));
         // get api
       },
       step1() {
@@ -512,6 +516,32 @@
         if (this.shell == null) return true;
         if (this.type_engine == null) return true;
         return false;
+      },
+            moveToFinal(data){
+                this.price = data;
+                console.log(this.price);
+          var data1 = {
+          city: this.city,
+          company: this.company,
+          car_model: this.model,
+
+          release_year: this.year,
+          mileage: this.mileage,
+          engine_volume: this.engine_volume,
+
+          gear: this.gear,
+          transmission: this.transmission,
+          shell: this.shell,
+
+          rudder: this.rudder,
+          custom_clear: this.custom_clear,
+          type_engine: this.type_engine,
+          color: this.color,
+          id: 50,
+          price: this.price
+        };
+        this.setCar(data1);
+        this.$router.push('/car_detail');
       },
       nextStep() {
         console.log("Next Step");

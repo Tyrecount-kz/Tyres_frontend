@@ -1,6 +1,6 @@
 <script>
   import { Line } from 'vue-chartjs';
-  import axios from 'axios'
+  //import axios from 'axios'
   import {
       // mapActions,
       // mapGetters
@@ -86,17 +86,7 @@
     },
 
     mounted () {
-
-      axios.get("https://2almas016.pythonanywhere.com/api/cars/")
-      .then(
-          response => {
-              console.log(response.data);
-              console.log("done")
-              // commit("setWishlist", response.data);
-              this.renderChart(this.chartData, this.options);  
-          }
-      );
-
+      this.renderChart(this.chartData, this.options);  
     }
   }
 </script>
